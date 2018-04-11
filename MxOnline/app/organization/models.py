@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from datetime import datetime
 
 from django.db import models
@@ -8,7 +9,7 @@ from django.db import models
 class CityDict(models.Model):
     name = models.CharField(max_length=20, verbose_name=u"城市")
     desc = models.CharField(max_length=20, verbose_name=u"城市描述")
-    add_time = models.DateTimeField(default=datetime.now, verbose_name=u"添加时间")
+    add_time = models.DateField(default=datetime.now, verbose_name=u"添加时间")
 
     class Meta:
         verbose_name = u"城市"
@@ -23,7 +24,7 @@ class CourseOrg(models.Model):
     image = models.ImageField(upload_to="image/%Y/%m", default=u"image/default.png", max_length=100, verbose_name=u"封面")
     address = models.CharField(max_length=50, verbose_name=u"机构地址")
     city = models.ForeignKey(CityDict, verbose_name=u"所在城市", on_delete=models.CASCADE)
-    add_time = models.DateTimeField(default=datetime.now, verbose_name=u"添加时间")
+    add_time = models.DateField(default=datetime.now, verbose_name=u"添加时间")
 
     class Meta:
         verbose_name = u"课程机构"
@@ -39,7 +40,7 @@ class Teacher(models.Model):
     points = models.CharField(max_length=50, verbose_name=u"教学特点")
     click_nums = models.IntegerField(default=0, verbose_name=u"点击数")
     fav_nums = models.IntegerField(default=0, verbose_name=u"收藏数")
-    add_time = models.DateTimeField(default=datetime.now, verbose_name=u"添加时间")
+    add_time = models.DateField(default=datetime.now, verbose_name=u"添加时间")
 
     class Meta:
         verbose_name = u"课程机构"

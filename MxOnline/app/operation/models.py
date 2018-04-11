@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from datetime import datetime
 
 from django.db import models
@@ -11,7 +12,7 @@ class UserAsk(models.Model):
     name = models.CharField(max_length=20, verbose_name=u"用户")
     mobile = models.CharField(max_length=11, verbose_name=u"手机")
     course_name = models.CharField(max_length=20, verbose_name=u"课程名")
-    add_time = models.DateTimeField(default=datetime.now, verbose_name=u"添加时间")
+    add_time = models.DateField(default=datetime.now, verbose_name=u"添加时间")
 
     class Meta:
         verbose_name = u"用户咨询"
@@ -22,7 +23,7 @@ class CourseComment(models.Model):
     user = models.ForeignKey(UserProfile, verbose_name=u"用户", on_delete=models.CASCADE)
     course = models.ForeignKey(Course, verbose_name=u"课程", on_delete=models.CASCADE)
     comments = models.CharField(max_length=200, verbose_name=u"评论")
-    add_time = models.DateTimeField(default=datetime.now, verbose_name=u"评论时间")
+    add_time = models.DateField(default=datetime.now, verbose_name=u"评论时间")
 
     class Meta:
         verbose_name = u"课程评论"
@@ -33,7 +34,7 @@ class UserFavorite(models.Model):
     user = models.ForeignKey(UserProfile, verbose_name=u"用户", on_delete=models.CASCADE)
     fav_id = models.IntegerField(default=0, verbose_name=u"数据id")
     fav_type = models.IntegerField(choices=((1, "课程"), (2, "课程机构"), (3, "教师")), default=1, verbose_name=u"收藏类型")
-    add_time = models.DateTimeField(default=datetime.now, verbose_name=u"收藏时间")
+    add_time = models.DateField(default=datetime.now, verbose_name=u"收藏时间")
 
     class Meta:
         verbose_name = u"用户收藏"
@@ -44,7 +45,7 @@ class UserMessage(models.Model):
     user = models.IntegerField(default=0, verbose_name=u"接受用户")
     message = models.CharField(max_length=500, verbose_name=u"消息内容")
     has_read = models.BooleanField(default=False, verbose_name=u"是否已读")
-    add_time = models.DateTimeField(default=datetime.now, verbose_name=u"消息时间")
+    add_time = models.DateField(default=datetime.now, verbose_name=u"消息时间")
 
     class Meta:
         verbose_name = u"用户消息"
@@ -54,7 +55,7 @@ class UserMessage(models.Model):
 class UserCourse(models.Model):
     user = models.ForeignKey(UserProfile, verbose_name=u"用户", on_delete=models.CASCADE)
     course = models.ForeignKey(Course, verbose_name=u"课程", on_delete=models.CASCADE)
-    add_time = models.DateTimeField(default=datetime.now, verbose_name=u"消息时间")
+    add_time = models.DateField(default=datetime.now, verbose_name=u"消息时间")
 
     class Meta:
         verbose_name = u"用户课程"
