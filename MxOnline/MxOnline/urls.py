@@ -16,16 +16,26 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
+from django.conf.urls.static import static
+from .settings import MEDIA_ROOT, MEDIA_URL
 import xadmin
 
-from users.views import LoginView,RegisterView
+from users.views import LoginView, RegisterView, ActiveUserView,ForgetPasswordView
+from organization.views import OrgView
 
-urlpatterns = (
+urlpatterns = [
     path('xadmin/', xadmin.site.urls),
-    path('ingdex/', TemplateView.as_view(template_name="index.html"), name="index"),
+    path('index/', TemplateView.as_view(template_name="index.html"), name="index"),
     path('login/', LoginView.as_view(), name="login"),
     path('logout/', TemplateView.as_view(template_name="login.html"), name="logout"),
     path('register/', RegisterView.as_view(), name="register"),
     path('captcha/', include('captcha.urls')),
-    path('active/', include('captcha.urls')),
-)
+    path('active/<int:active_code>', ActiveUserView.as_view(), name="active"),
+    path('forgetpwd/', ForgetPasswordView.as_view(), name="forgetpwd"),
+
+
+    # 授课机构
+    path('org-list/', OrgView.as_view(), name="org-list"),
+]
+# 配置上传文件的访问地址
+urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT,)

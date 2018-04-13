@@ -15,10 +15,14 @@ class CityDict(models.Model):
         verbose_name = u"城市"
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.name
+
 
 class CourseOrg(models.Model):
     name = models.CharField(max_length=20, verbose_name=u"机构名称")
     desc = models.TextField(max_length=20, verbose_name=u"机构描述")
+    category = models.CharField(max_length=20, verbose_name=u"类别", choices=(("pxjg", "培训机构"), ("gr", "个人"), ("gx", "高校")), default="pxjg")
     click_nums = models.IntegerField(default=0, verbose_name=u"点击次数")
     fav_nums = models.IntegerField(default=0, verbose_name=u"收藏人数")
     image = models.ImageField(upload_to="image/%Y/%m", default=u"image/default.png", max_length=100, verbose_name=u"封面")
@@ -29,6 +33,9 @@ class CourseOrg(models.Model):
     class Meta:
         verbose_name = u"课程机构"
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
 
 
 class Teacher(models.Model):
@@ -45,3 +52,6 @@ class Teacher(models.Model):
     class Meta:
         verbose_name = u"课程机构"
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name

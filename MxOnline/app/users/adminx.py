@@ -13,7 +13,7 @@ class BaseSetting(object):
 class GlobalSettings(object):
     site_title = "暮学后台管理系统"
     site_footer = "暮学在线网"
-    menu_style = "accordoin"
+    menu_style = "accordion"
 
 
 class EmailVerifyRecordAdmin(object):
