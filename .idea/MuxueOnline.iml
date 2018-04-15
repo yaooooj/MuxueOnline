@@ -5,7 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/MxOnline/app" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MxOnline/extra_apps" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.6 (testenv)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.6 (testvirtual)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="R User Library" level="project" />
     <orderEntry type="library" name="R Skeletons" level="application" />

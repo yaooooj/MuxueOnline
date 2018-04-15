@@ -28,6 +28,8 @@ class CourseOrg(models.Model):
     image = models.ImageField(upload_to="image/%Y/%m", default=u"image/default.png", max_length=100, verbose_name=u"封面")
     address = models.CharField(max_length=50, verbose_name=u"机构地址")
     city = models.ForeignKey(CityDict, verbose_name=u"所在城市", on_delete=models.CASCADE)
+    students = models.IntegerField(default=0, verbose_name=u"学习人数")
+    course_num = models.IntegerField(default=0, verbose_name=u"课程数")
     add_time = models.DateField(default=datetime.now, verbose_name=u"添加时间")
 
     class Meta:
@@ -50,7 +52,7 @@ class Teacher(models.Model):
     add_time = models.DateField(default=datetime.now, verbose_name=u"添加时间")
 
     class Meta:
-        verbose_name = u"课程机构"
+        verbose_name = u"教师"
         verbose_name_plural = verbose_name
 
     def __str__(self):
