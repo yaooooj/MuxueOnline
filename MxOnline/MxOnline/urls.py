@@ -20,9 +20,9 @@ from django.conf.urls.static import static
 from .settings import MEDIA_ROOT, MEDIA_URL
 import xadmin
 
-from users.views import LoginView, RegisterView, ActiveUserView,ForgetPasswordView
-from organization.views import OrgView
+from users.views import LoginView, RegisterView, ActiveUserView, ForgetPasswordView
 
+app_name = 'organization'
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
     path('index/', TemplateView.as_view(template_name="index.html"), name="index"),
@@ -34,8 +34,8 @@ urlpatterns = [
     path('forgetpwd/', ForgetPasswordView.as_view(), name="forgetpwd"),
 
 
-    # 授课机构
-    path('org-list/', OrgView.as_view(), name="org-list"),
+    # 授课机构url配置
+    path('org/', include('organization.urls', namespace='org')),
 ]
 # 配置上传文件的访问地址
-urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT,)
+urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)

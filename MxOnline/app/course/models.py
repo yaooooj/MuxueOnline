@@ -3,10 +3,13 @@ from datetime import datetime
 
 from django.db import models
 
+from organization.models import CourseOrg
+
 # Create your models here.
 
 
 class Course(models.Model):
+    course_org = models.ForeignKey(CourseOrg, verbose_name="课程机构", null=True, blank=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=20, verbose_name=u"课程名")
     desc = models.CharField(max_length=100, verbose_name=u"课程描述")
     detail = models.TextField(verbose_name=u"课程详情")
@@ -22,6 +25,9 @@ class Course(models.Model):
         verbose_name = u"课程"
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.name
+
 
 class Lesson(models.Model):
     course = models.ForeignKey(Course, verbose_name=u"课程", on_delete=models.CASCADE)
@@ -29,7 +35,7 @@ class Lesson(models.Model):
     add_time = models.DateField(default=datetime.now, verbose_name=u"添加时间")
 
     class Meta:
-        verbose_name = u"课程"
+        verbose_name = u"章节"
         verbose_name_plural = verbose_name
 
 
@@ -39,8 +45,11 @@ class Video(models.Model):
     add_time = models.DateField(default=datetime.now, verbose_name=u"添加时间")
 
     class Meta:
-        verbose_name = u"章节"
+        verbose_name = u"视频"
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
 
 
 class CourseResource(models.Model):
@@ -52,3 +61,6 @@ class CourseResource(models.Model):
     class Meta:
         verbose_name = u"课程资源"
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
